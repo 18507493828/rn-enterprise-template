@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+  <dict>
+   <!--	method：app-store 表示要发布到 App Store，ad-hoc 表示为 TestFlight 或企业分发。
+	uploadSymbols：如果你希望上传符号文件进行崩溃分析，设置为 true。
+	teamID：你的 Apple 开发者团队 ID。
+	provisioningProfiles：你为 App 设置的 Provisioning Profile。 -->
+    <key>App Store</key>
+    <string>app-store</string> <!-- 使用 app-store 发布模式 -->
+    <key>uploadSymbols</key>
+    <true/>
+    <key>teamID</key>
+    <string>WRXA29M8Q7</string> <!-- 你的 Apple 开发者 Team ID -->
+    <key>signingStyle</key>
+    <string>automatic</string> <!-- 自动签名 -->
+    <key>provisioningProfiles</key>
+    <dict>
+      <key>com.bh.rnTemplate</key>
+      <string>rnTemplateProvisioningProfile</string> <!-- 你的 Provisioning Profile 名称 -->
+    </dict>
+  </dict>
+  
+</plist>

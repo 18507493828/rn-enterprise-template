@@ -1,0 +1,17 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
+    <style name="BootTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash</item>  <!-- 指向 bootsplash.xml -->
+        <item name="android:statusBarColor">#F5FEFF</item>  <!-- 状态栏颜色 -->
+        <item name="android:windowLightStatusBar">true</item>  <!-- 让状态栏字体变黑 -->
+        <!--        <item name="postBootSplashTheme">@style/AppTheme</item>-->
+        <item name="bootSplashBackground">@drawable/splash</item>
+    </style>
+
+</resources>
+

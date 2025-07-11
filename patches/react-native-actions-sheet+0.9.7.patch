@@ -1,0 +1,41 @@
+diff --git a/node_modules/react-native-actions-sheet/dist/src/index.js b/node_modules/react-native-actions-sheet/dist/src/index.js
+index 0e124da..7dee54f 100644
+--- a/node_modules/react-native-actions-sheet/dist/src/index.js
++++ b/node_modules/react-native-actions-sheet/dist/src/index.js
+@@ -31,7 +31,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+ };
+ /* eslint-disable curly */
+ import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState, } from 'react';
+-import { Animated, BackHandler, Dimensions, Easing, Keyboard, Modal, PanResponder, Platform, SafeAreaView, StatusBar, TouchableOpacity, View, } from 'react-native';
++import { Animated, BackHandler, Dimensions, Easing, Keyboard, Modal, PanResponder, Platform, SafeAreaView, StatusBar, TouchableOpacity, View,NativeModules } from 'react-native';
+ import { GestureHandlerRootView, PanGestureHandler, } from 'react-native-gesture-handler';
+ import { DraggableNodesContext, PanGestureRefContext, } from './context';
+ import EventManager, { actionSheetEventManager } from './eventmanager';
+@@ -1135,6 +1135,18 @@ export default forwardRef(function ActionSheet(_a, ref) {
+         ref: panHandlerRef,
+         eventManager: internalEventManager,
+     };
++        //安卓非全面屏适配
++        const getNavigationBarHeight = () => {
++            if (
++                Platform.OS === 'android' &&
++                parseInt(NativeModules.PlatformConstants.Version, 10) <= 29
++            ) {
++                const { height } = Dimensions.get('screen');
++                const { height: windowHeight } = Dimensions.get('window');
++                return height - windowHeight;
++            }
++            return 0;
++        };
+     return (<>
+         {Platform.OS === 'ios' && !safeAreaInsets ? (<SafeAreaView pointerEvents="none" collapsable={false} onLayout={function (event) {
+                 var height = event.nativeEvent.layout.height;
+@@ -1177,7 +1189,7 @@ export default forwardRef(function ActionSheet(_a, ref) {
+           </SafeAreaView>) : null}
+ 
+         {visible ? (<Root {...rootProps}>
+-            <GestureHandlerRoot isModal={isModal} style={styles.parentContainer}>
++            <GestureHandlerRoot isModal={isModal} style={[styles.parentContainer,{marginBottom:getNavigationBarHeight()}]}>
+               <PanGestureRefContext.Provider value={context}>
+                 <DraggableNodesContext.Provider value={draggableNodesContext}>
+                   <Animated.View onLayout={onRootViewLayout} ref={rootViewContainerRef} pointerEvents={(props === null || props === void 0 ? void 0 : props.backgroundInteractionEnabled) ? 'box-none' : 'auto'} style={[

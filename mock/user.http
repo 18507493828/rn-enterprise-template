@@ -1,0 +1,481 @@
+# @host = http://152.32.140.94:7001
+# @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwicGhvbmUiOiIzMzMzIiwiaWF0IjoxNzM2NzQ1MTg4LCJleHAiOjE3MzY4MzE1ODh9.0WGHwqt4LxvCAd1PrweCQDQd2rcN1-TXAJaS_gI6Lv4
+
+@host = http://152.32.140.94:7001
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywicGhvbmUiOiIzMzMzIiwiY3VycmVuY3kiOiJOIiwiY291bnRyeV9pZCI6MiwiaWF0IjoxNzM2NzQ1NTkyLCJleHAiOjE3MzY4MzE5OTJ9.AGSdjUu4N0ABBUPp4UoFmfKSkSCychEPmJFKyrvLcCU
+
+### 登录方式一
+POST {{host}}/user/login HTTP/1.1
+Content-type: application/json 
+
+{
+  "phone": "15010000001",
+  "password": "qwe123"
+}
+
+### 登录方式二
+POST {{host}}/user/login HTTP/1.1
+Content-type: application/json 
+
+{
+  "phone": "123",
+  "verification_code": "abcd",
+  "type": 2
+}
+
+
+###  登出
+POST {{host}}/user/logout 
+Content-type: application/json 
+Authorization: {{token}}
+
+
+###  删除账号
+POST {{host}}/user/delete 
+Content-type: application/json 
+Authorization: {{token}}
+
+
+### 发送验证码 TODO
+POST {{host}}/user/send HTTP/1.1
+Content-type: application/json 
+
+{
+  "phone": "18201133456",
+  "type": 1
+}
+
+### 注册
+POST http://152.32.140.94:7001/user/register HTTP/1.1
+Content-type: application/json 
+
+{
+  "first_name": "关",
+  "last_name": "羽",
+  "phone": "15010000004",
+  "password": "qwe123",
+  "verification_code": "999999",
+  "invite_code": "LMTUFQ",
+  "country_id": 1,
+  "currency": "N"
+}
+
+
+### 忘记密码
+POST {{host}}/user/forgot-password HTTP/1.1
+Content-type: application/json 
+
+{
+  "phone": "12345678",
+  "password": "qwe123",
+  "verification_code": "1234"
+}
+
+### 用户信息
+GET {{host}}/user/info HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+
+### 更新用户信息 
+POST {{host}}/user/update HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+{
+  "first_name": "林",
+  "last_name": "冲",
+  "country_id": 2,
+  "avatar_url": "http://wwww"
+}
+
+
+### APP内更新密码
+POST {{host}}/user/reset-password HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+{
+  "old_password": "qwe123",
+  "new_password":"qwe123"
+}
+
+
+### 刷新TOKEN TODO
+POST {{host}}/user/refreshToken 
+Content-type: application/json 
+Authorization: {{token}}
+
+
+### 银行卡列表 
+GET {{host}}/bank/list?page=1&pageSize=10 HTTP/1.1
+Content-type: application/json  
+Authorization: {{token}}
+
+
+### 银行卡详情
+GET {{host}}/bank/info?id=1 HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+
+### 添加银行卡
+POST {{host}}/bank/create HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+{
+  "bank_name": "XZLLL1",
+  "account_name":"123",
+  "account_number":"346434645645654",
+  "bank_id":123,
+  "password": "qwe123"
+}
+
+### 删除银行卡
+POST {{host}}/bank/delete HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+{
+  "id": 32,
+  "password": "qwe123"
+}
+
+
+### 提现 
+
+POST {{host}}/withdrawal/add HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+{
+  "bank_id": 40,
+  "amount": 2.11
+}
+
+
+### 提现记录
+GET {{host}}/withdrawal/list HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+### 添加交易密码
+POST {{host}}/transaction-password/create HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+{
+  "password": "abcd"
+}
+
+### 重置交易密码
+### --DOTO--补充字段
+POST {{host}}/transaction-password/reset-password HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+{
+  "password": "abcd"
+}
+
+
+### 校验交易密码
+POST {{host}}/transaction-password/verify HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+{
+  "password": "abcde"
+}
+
+
+### 交易统计
+GET {{host}}/transaction/stat HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+
+### 交易记录
+GET {{host}}/transaction/list?page=1&pageSize=12&type[]=0&start_date=165103975&end_date=1835203975&status[]=0&status[]=1 HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+
+### 交易记录2
+GET {{host}}/transaction/list HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+
+### 交易详情
+### TODO
+### 1.关联订单数据字段补充 
+### 2.审批流数据
+// 交易类型
+# 出卡: 1,
+# 提现: 2,
+# 返利: 3,
+# 返佣: 4
+GET {{host}}/transaction/detail?transcation_id=T1736748163998b5 HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "type": 3,
+    "final_foreign_amount": "0.00",
+    "final_rmb_amount": "0.00",
+    "status": 2,
+    "order_id": "C1736498573275d2",
+    "withdrawal_id": null,
+    "currency": "N",
+    "foreign_rate": "2.50",
+    "transcation_id": "T173649867782352",
+    "user_id": 3,
+    "total_income": "2205.00",
+    "total_expense": "0.00",
+    "total_sell": "2205.00",
+    "created_at": "2025-01-10T08:44:37.000Z",
+    "updated_at": "2025-01-10T08:44:37.000Z",
+    "deletedAt": null,
+    "order": {
+      "country_id": 1,
+      "balance": "126.00",
+      "card_type": 1,
+      "order_id": "C1736498573275d2",
+      "created_at": "2025-01-10T08:42:55.000Z"
+    }
+  }
+}
+
+
+### 订单详情 
+### 1s.审批流数据
+GET {{host}}/order/info?order_id=C1736498573275d2 HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+
+### 通知列表 
+GET {{host}}/notification/list HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+
+### 通知详情
+GET {{host}}/notification/info?id=8 HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+
+### 未读通知列表
+GET {{host}}/notification/unread HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+### 通知已读
+POST {{host}}/notification/read HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+{
+  "id": 18
+}
+
+### 卡商添加通知
+POST {{host}}/api/cardplatform/publish?time_stamp=1736489329&api_key=6b3baa5e8cdc6b6d79152e2c75cd6d39&sign=134ddf6d8bf44266cafdc2120d0d0dea HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+{
+  "event": "notification",
+  "data": {
+    "title": "ss",
+    "desc": "dddd",
+    "content": "fdsfsd"
+  }
+}
+
+### 好友列表 
+### 总交易金额?
+### 总提成?
+
+GET {{host}}/friend/list HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+
+### 邀请数
+
+
+### 好友详情
+GET {{host}}/friend/info?user_id=6 HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+### 好友详情
+GET {{host}}/friend/info?user_id=4 HTTP/1.1
+Content-type: application/json 
+Authorization: {{token}}
+
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "total_transaction_amount": "ss",
+    "invitation_rewards_transaction_amount": 0
+  }
+}
+
+### 白名单列表
+GET {{host}}/whitelist/list HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+
+### 黑名单列表
+GET {{host}}/blacklist/list HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+
+### 黑名单上报 
+### 上报后在哪里审核？审核接口
+
+POST {{host}}/blacklist/report HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+{
+	"images": "{\"name\":\"John\",\"age\":30}",
+  "account": "8"
+}
+
+### 卡类型列表
+GET {{host}}/card/cardType/list?country_id=1 HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+### 卡类型汇率历史列表
+GET {{host}}/card/cardRate/records?card_type_id=27&country_id=1 HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+### 单卡汇率计算
+POST {{host}}/card/calculate HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+{
+  "card_type_id": 1,
+  "balance": 126,
+  "country_id": 1,
+  "card_type": 1,
+  "is_fast": 1
+}
+
+### 收藏卡种列表
+GET {{host}}/favorite/list HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+### 收藏卡种
+POST {{host}}/favorite/add HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+{
+  "card_type_id": 18
+}
+
+### 删除收藏卡种
+DELETE {{host}}/favorite/remove?card_type_id=18 HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+### 国家列表
+GET {{host}}/country/list HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+### 广告列表
+GET {{host}}/ad/list HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+### 系统银行列表
+GET  {{host}}/systemBank/list?user_country_id=1&page=1&pageSize=50 HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+### 系统银行信息
+GET  {{host}}/systemBank/info?bank_id=3 HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+### 销售排行榜-周
+GET  {{host}}/rank/salesList?year=2025&week=2 HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+### 销售排行榜-月
+GET  {{host}}/rank/salesList?year=2025&month=1 HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+### 销售排行榜规则
+GET  {{host}}/rank/salesRules HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+### 排行榜周统计
+POST {{host}}/rank/runWeekStat HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+{
+  "year": 2025,
+  "week": 2
+}
+
+### 排行榜月统计
+POST {{host}}/rank/runMonthStat HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+{
+  "year": 2025,
+  "month": 1
+}
+
+### 出卡 
+### 联调卡商
+POST {{host}}/card/sell HTTP/1.1
+Content-type: application/json
+Authorization: {{token}}
+
+{
+  "category": "1category",
+  "card_id": 18,
+  "country_id": 1,
+  "balance": "10",
+  "card_type": 18,
+  "is_fast": 1,
+  "card_head_id": 1,
+  "rmb_rate": 6.00,
+  "card_info": {
+    "code": "2124314134552129",
+    "cvv": "",
+    "expiration_date": "",
+    "pin": ""
+  },
+  "card_image_urls": [
+    "https://pics0.baidu.com/feed/48540923dd54564ee59b2cd7b6efb68dd0584f26.jpeg@f_auto?token=bf0570daf6d5bbf44cfeadb02967cef2"
+  ],
+  "receipt_image_urls": []
+}
+
+

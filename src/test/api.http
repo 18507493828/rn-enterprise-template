@@ -1,0 +1,53 @@
+
+### register
+POST http://152.32.140.94:7001/user/register HTTP/1.1
+Content-type: application/json 
+
+{
+  "first_name": "234",
+  "last_name": "567",
+  "phone": "2348002048518",
+  "password": "qwe123",
+  "verification_code": "999999",
+  "country_id": 1,
+  "symbol": ""
+}
+
+###
+GET http://152.32.140.94:7001/user/update HTTP/1.1
+Content-type: application/json 
+
+
+{
+  "first_name": "",
+  "last_name": "",
+  "country_id": 2,
+  "avatar_url": "",
+}
+
+
+### 国家列表
+GET http://152.32.140.94:7001/country/list HTTP/1.1
+Content-type: application/json
+Authorization: {{}}
+
+{
+  "code": 200,
+  "message": "success",
+  "data": [
+    {
+      "id": 1,
+      "name": "Nigeria",
+      "cn_name": "尼日利亚",
+      "currency": "NGN",
+      "symbol": "₦",
+      "icon": "",
+      "rate": "220.00",
+      "is_disabled": 0,
+      "created_at": "2025-01-10T07:55:32.000Z",
+      "updated_at": "2025-01-10T07:55:32.000Z",
+      "deletedAt": null
+    }
+  ]
+}
+

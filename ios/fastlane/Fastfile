@@ -1,0 +1,115 @@
+
+default_platform(:ios)
+
+platform :ios do
+  desc "build rnTemplate environment ipa"
+  lane :certificates do
+    match(type: "development", app_identifier: ["com.bh.rnTemplate"], force_for_new_devices: true)
+    match(type: "appstore", app_identifier: ["com.bh.rnTemplate"])
+  end
+  #以下为 上传到appstore testflight 打包
+  lane :rnTemplate do
+    gym({
+      scheme: "rnTemplate",
+      export_method: "app-store",
+      output_directory: "build/ipa",
+      output_name: "rnTemplate.ipa",
+      configuration: 'Release',
+      include_symbols: false,
+      clean: true
+  })
+  #  fastlane run upload_to_testflight ipa:"./build/ipa/rnTemplate.ipa"
+  upload_to_testflight(
+  ipa: "./build/ipa/rnTemplate.ipa",
+  )
+  end
+  lane :rnTemplateDev do
+    gym({
+      scheme: "rnTemplateDev",
+      export_method: "app-store",
+      output_directory: "build/ipa",
+      output_name: "rnTemplateDev.ipa",
+      configuration: 'Release',
+      include_symbols: false,
+      clean: true
+  })
+  upload_to_testflight(
+  ipa: "./build/ipa/rnTemplateDev.ipa",
+  )
+  end
+
+  lane :rnTemplateStaging do
+    gym({
+      scheme: "rnTemplateStaging",
+      export_method: "app-store",
+      output_directory: "build/ipa",
+      output_name: "rnTemplateStaging.ipa",
+      configuration: 'Release',
+      include_symbols: false,
+      clean: true
+  })
+  upload_to_testflight(
+  ipa: "./build/ipa/rnTemplateStaging.ipa",
+  )
+  end
+  lane :rnTemplatePre do
+    gym({
+      scheme: "rnTemplatePre",
+      export_method: "app-store",
+      output_directory: "build/ipa",
+      output_name: "rnTemplatePre.ipa",
+      configuration: 'Release',
+      include_symbols: false,
+      clean: true
+  })
+  upload_to_testflight(
+  ipa: "./build/ipa/rnTemplatePre.ipa",
+  )
+  end
+  # 以下是为了本地备份，或者自动化测试 ，development的包。
+  lane :rnTemplateDevDevelopment do
+    gym({
+      scheme: "rnTemplateDev",
+      export_method: "development",
+      output_directory: "build/ipa",
+      output_name: "rnTemplateDevDevelopment.ipa",
+      configuration: 'Release',
+      include_symbols: false,
+      clean: true
+  })
+  end
+  lane :rnTemplateStagingDevelopment do
+    gym({
+      scheme: "rnTemplateStaging",
+      export_method: "development",
+      output_directory: "build/ipa",
+      output_name: "rnTemplateStagingDevelopment.ipa",
+      configuration: 'Release',
+      include_symbols: false,
+      clean: true
+  })
+  end
+  lane :rnTemplatePreDevelopment do
+    gym({
+      scheme: "rnTemplatePre",
+      export_method: "development",
+      output_directory: "build/ipa",
+      output_name: "rnTemplatePreDevelopment.ipa",
+      configuration: 'Release',
+      include_symbols: false,
+      clean: true
+  })
+  end
+  lane :rnTemplateDevelopment do
+    gym({
+      scheme: "rnTemplate",
+      export_method: "development",
+      output_directory: "build/ipa",
+      output_name: "rnTemplateDevelopment.ipa",
+      configuration: 'Release',
+      include_symbols: false,
+      clean: true
+  })
+  end
+
+  end

@@ -1,0 +1,30 @@
+{
+    "extends": "@react-native/typescript-config/tsconfig.json",
+    "compilerOptions": {
+        "jsx": "react",
+        "baseUrl": ".",
+        "paths": {
+            "@test/*": ["src/test/*"],
+            "@assets/*": ["src/assets/*"],
+            "@contexts/*": ["src/contexts/*"],
+            "@business/*": ["src/business/*"],
+            "@common/*": ["src/common/*"],
+            "@components/*": ["src/components/*"],
+            "@config/*": ["src/config/*"],
+            "@constant/*": ["src/constant/*"],
+            "@view/*": ["src/view/*"],
+            "@jssdk/*": ["src/jssdk/*"],
+            "@navigation/*": ["src/navigation/*"],
+            "@utils/*": ["src/utils/*"],
+            "@lib/*": ["src/lib/*"],
+            "@localization/*": ["src/localization/*"]
+        },
+        "strict": true,
+        "noImplicitAny": true,
+        "experimentalDecorators": false,
+        "target": "ES2022",
+        "module": "ESNext",
+        "lib": ["esnext"],
+        "useDefineForClassFields": true
+    }
+}
