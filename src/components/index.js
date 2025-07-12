@@ -38,16 +38,12 @@ import TextWithUnit from './TextWithUnit';
 import ToastManager, { Toast } from './Toast';
 import Hud from './Hud';
 import CustomActionSheet from './ActionSheet';
-import UploadImage from './UploadImage/UploadImage';
-import UploadManager from './UploadImage/UploadManager';
 import DraggableButton from './DraggableButton';
 import AnimatedIconCircle from './AnimatedIconCircle';
 import Touchable from './Touchable';
 import Accordion from './Accordion';
 
 export {
-    UploadManager,
-    UploadImage,
     ActionSheetPhoto,
     Alert,
     Avatar,

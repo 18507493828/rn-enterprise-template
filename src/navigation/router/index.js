@@ -5,7 +5,6 @@ import MainDrawer from '@navigation/drawer/MainDrawer';
 /*{登录注册}*/
 import LoginScreen from '@view/module/auth/LoginScreen';
 import RegisterScreen from '@view/module/auth/RegisterScreen';
-import ChangePassWordScreen from '@view/module/me/ChangePassWordScreen';
 import ResetPasswordScreen from '@view/module/auth/ResetPasswordScreen';
 import AccountDeletionScreen from '@view/module/auth/DeleteAccountScreen';
 import BaseUrlScreen from '@view/module/auth/BaseUrlScreen';
@@ -92,15 +91,6 @@ export default {
             ...navigationOptions,
             headerShown: true,
             title: 'header_title_baseUrl',
-        },
-    },
-    // 修改密码
-    ChangePassWordScreen: {
-        screen: ChangePassWordScreen,
-        options: {
-            ...navigationOptions,
-            headerShown: true,
-            title: 'header_title_modify_password',
         },
     },
     // 修改密码

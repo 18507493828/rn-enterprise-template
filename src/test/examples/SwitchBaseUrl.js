@@ -11,10 +11,10 @@ import RootNavigation from '@navigation/RootNavigation';
 const SwitchBaseUrl = () => {
     //config无法读取env其他环境
     const urlList = [
-        { url: 'https://api.rnTemplate.icu/portal/v1', text: 'pro' },
-        { url: 'https://pre-api.rnTemplate.icu/portal/v1', text: 'pre' },
-        { url: 'https://minecardvip.xyz:7001/portal/v1', text: 'staging' },
-        { url: 'http://152.32.213.70:7001/portal/v1', text: 'dev' },
+        { url: 'http://192.168.5.90:3000/api/', text: 'pro' },
+        { url: 'http://192.168.5.90:3000/api/', text: 'pre' },
+        { url: 'http://192.168.5.90:3000/api/', text: 'staging' },
+        { url: 'http://192.168.5.90:3000/api/', text: 'dev' },
     ];
     const updatedUrlList = useMemo(() => {
         return urlList.map(item => ({

@@ -10,15 +10,15 @@ interface Config {
 // 根据环境生成配置
 const config: Record<Environment, Config> = {
     development: {
-        baseURL: 'http://101.36.106.101:30001/portal/v1', // 开发
+        baseURL: 'http://192.168.5.90:3000/api/', // 开发
         timeout: 30000, // 请求超时时间
     },
     production: {
-        baseURL: 'http://101.36.106.101:30001/portal/v1', // 生产
+        baseURL: 'http://192.168.5.90:3000/api/', // 生产
         timeout: 30000,
     },
     test: {
-        baseURL: 'http://101.36.106.101:30001/portal/v1', // 测试
+        baseURL: 'http://192.168.5.90:3000/api/', // 测试
         timeout: 30000,
     },
 };

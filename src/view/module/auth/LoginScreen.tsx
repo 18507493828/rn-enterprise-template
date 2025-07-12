@@ -33,7 +33,6 @@ import {
     regexNumberAndLetter,
     regexVerificationCode,
 } from '@utils/RegularUtil';
-import SelectCountry from '../sell/core/SelectCountry';
 import { CommonActions } from '@react-navigation/native';
 import OneSignalInit from '@view/common/OneSignalManager/OneSignalInit';
 import { loginChat } from '@view/common/ChatManager';
@@ -219,17 +218,6 @@ const LoginScreen: React.FC<LoginProps> = ({ navigation }) => {
                         <TextInner style={styles.textTip}>{t('auth_login_account')}</TextInner>
                     </View>
                     <View style={COMMON_STYLES.center}>
-                        <SelectCountry
-                            selectedValue={countryInfo.name}
-                            iconUrl={countryInfo.icon}
-                            title={countryInfo.name || t('auth_select_country')}
-                            style={{ width: '100%' }}
-                            onSelect={handleSelect}
-                            data={countryList}
-                            disabled={false}
-                            defaultSelected={countryInfo?.id as any}
-                            label={''}
-                        />
                         <InputField
                             leftChirdren={
                                 countryInfo.code ? (

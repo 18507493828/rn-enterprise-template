@@ -8,7 +8,6 @@ import { SCREEN_WIDTH } from '@utils/ScreenUtil';
 import CountDownTime from './core/CountDownTime';
 import CommonMethods from '@utils/CommonMethods';
 import AuthController from '@business/controller/AuthController';
-import SelectCountry from '../sell/core/SelectCountry';
 import { SendType } from '@jssdk/model/mappings/SendMsgMapping';
 import {
     ghanaPhoneRegex,
@@ -97,16 +96,6 @@ const ResetPassword = ({ navigation, route }) => {
         <DefaultView keyboardAvoiding>
             <ScrollView>
                 <View style={[COMMON_STYLES.center, styles.country]}>
-                    <SelectCountry
-                        selectedValue={country}
-                        iconUrl={countryImage}
-                        title={country || t('auth_select_country')}
-                        onSelect={handleSelect}
-                        data={countryList}
-                        disabled={false}
-                        defaultSelected={countryId}
-                    />
-
                     <InputField
                         keyboardType="number-pad"
                         value={phoneNum}

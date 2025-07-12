@@ -14,7 +14,6 @@ import CountDownTime from './core/CountDownTime';
 import CommonMethods from '@utils/CommonMethods';
 import AuthController from '@business/controller/AuthController';
 import { SendType } from '@jssdk/model/mappings/SendMsgMapping';
-import SelectCountry from '../sell/core/SelectCountry';
 import { useCommonState } from '@lib/zustand';
 import {
     ghanaPhoneRegex,
@@ -125,17 +124,6 @@ const RegisterScreen = ({ navigation, route }) => {
                         onChangeText={text => {
                             setLastName(text);
                         }}
-                    />
-
-                    <SelectCountry
-                        selectedValue={country}
-                        iconUrl={countryImage}
-                        title={country || t('auth_select_country')}
-                        style={{ width: '100%', marginTop: scaleSize(20) }}
-                        onSelect={handleSelect}
-                        data={countryList}
-                        disabled={false}
-                        defaultSelected={countryId}
                     />
 
                     <InputField
